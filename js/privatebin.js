@@ -4988,6 +4988,7 @@ jQuery.PrivateBin = (function($) {
                     break;
                 case me.error.serverError:
                     errorArray = ['Could not ' + doThisThing + ': %s', I18n._('server error or not responding')];
+                    I18n._($('#errormessage'), 'Do you need to <a id="authlink" href="/oauth2/start" rel="nofollow noopener noreferrer">Log In</a>');
                     break;
                 default:
                     errorArray = ['Could not ' + doThisThing + ': %s', I18n._('unknown error')];
@@ -5889,7 +5890,7 @@ jQuery.PrivateBin = (function($) {
             // Add a hook to make all links open a new window
             DOMPurify.addHook('afterSanitizeAttributes', function(node) {
                 // set all elements owning target to target=_blank
-                if ('target' in node && node.id !== 'pasteurl') {
+                if ('target' in node && node.id !== 'pasteurl' && node.id !== 'authlink') {
                     node.setAttribute('target', '_blank');
                 }
                 // set non-HTML/MathML links to xlink:show=new
